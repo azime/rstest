@@ -19,6 +19,7 @@ pipeline {
                 sh '''
                     $VERSION=$(echo githubflow_get_new_version --release-type $RELEASE_TYPE  --remote-name origin)
                     sed -i -e "s/^version\s*=\s*\".*\"/version = \"$VERSION\"/" Cargo.toml
+                    cat Cargo.toml
                     #git add .
                     #git commit -m "[Versioned] New $RELEASE_TYPE version $VERSION"
                 '''
