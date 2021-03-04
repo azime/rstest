@@ -10,14 +10,14 @@ pipeline {
             steps {
                 sh '''
                     echo "install extra packages"
-                    pip install git+ssh://git@github.com/CanalTP/githubflow_release/pull/17/commits/60cdc669b57dfaa0feb7a12ac18117bf2dff0195
+                    pip install git+https://github.com/CanalTP/githubflow_release.git@refs/pull/17/head
                 '''
             }
         }
         stage('Change version form cargo.toml files') {
             steps {
                 sh '''
-                    $VERSION=$(echo githubflow_get_new_version --release-type $release_type  --remote-name origin)
+                    VERSION=$(echo githubflow_get_new_version --release-type $release_type  --remote-name origin)
                     #cat Cargo.toml
                     #git add .
                     #git commit -m "[Versioned] New $release_type version $VERSION"
@@ -27,7 +27,7 @@ pipeline {
         stage('Create and push new version') {
             steps {
                 sh '''
-                    githubflow_release --release-type $release_type --base-branch master --github-repo azime/rstest  --remote-name origin  --dry-run
+                    githubflow_release --release-type $release_type --base-branch master --github-repo azime/rstest  --remote-name origin
                 '''
             }
         }
