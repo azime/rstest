@@ -35,7 +35,7 @@ pipeline {
         stage('Create and push new version') {
             steps {
                 sh '''
-                    githubflow_release --release-type $release_type --base-branch master --github-repo azime/rstest  --remote-name origin  --dry-run
+                    githubflow_release --release-type $release_type --base-branch master --github-repo azime/rstest  --remote-name origin
                 '''
             }
         }
