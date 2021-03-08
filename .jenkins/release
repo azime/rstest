@@ -6,18 +6,26 @@ pipeline {
         }
     }
     stages {
+        stage('Prepare git env'){
+            steps{
+                sh "git config --global user.email 'azime@yahoo.fr'"
+                sh "git config --global user.name 'azime'"
+                sh "git tag -l | xargs git tag -d"
+            }
+        }
         stage('Install extra packages') {
             steps {
                 sh '''
                     echo "install extra packages"
-                    pip install git+https://github.com/CanalTP/githubflow_release.git@refs/pull/17/head
+                    pip install git+git://github.com/CanalTP/githubflow_release.git@cc5cc83da7ef4f290cadf46ed6a11601dd15fa9c
                 '''
             }
         }
         stage('Change version form cargo.toml files') {
             steps {
                 sh '''
-                    VERSION=$(echo githubflow_get_new_version --release-type $release_type  --remote-name origin)
+                    $VERSION=$(echo githubflow_get_new_version --release-type $release_type  --remote-name origin)
+                    sed -i -e "s/^version\\s*=\\s*\\".*\\"/version = \\"$VERSION\\"/" Cargo.toml
                     #cat Cargo.toml
                     #git add .
                     #git commit -m "[Versioned] New $release_type version $VERSION"
