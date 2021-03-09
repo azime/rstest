@@ -1,6 +1,6 @@
 [package]
 name = "rstest"
-version = "0.3.0"
+version = "0.2.0"
 authors = ["Abderrahim AZIME <azime_1@yahoo.fr>"]
 edition = "2018"
 
