@@ -24,7 +24,7 @@ pipeline {
         stage('Change version form cargo.toml files') {
             steps {
                 sh '''
-                    $VERSION=$(echo githubflow_get_new_version --release-type $release_type  --remote-name origin)
+                    VERSION=`echo githubflow_get_new_version --release-type $release_type  --remote-name origin`
                     sed -i -e "s/^version\\s*=\\s*\\".*\\"/version = \\"$VERSION\\"/" Cargo.toml
                     #cat Cargo.toml
                     #git add .
