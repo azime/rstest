@@ -1,6 +1,6 @@
 [package]
 name = "rstest"
-version = "githubflow_get_new_version --release-type minor --remote-name origin"
+version = "0.3.0"
 authors = ["Abderrahim AZIME <azime_1@yahoo.fr>"]
 edition = "2018"
 
