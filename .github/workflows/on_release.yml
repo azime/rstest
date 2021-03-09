@@ -1,0 +1,13 @@
+name: Publish release
+
+on:
+  release:
+    types:[published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: test job
+      run: echo "test release"
