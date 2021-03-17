@@ -13,12 +13,9 @@ jobs:
     - name: test job
       run: echo "test release"
 
-    - name: Generate Changelog
-      run: echo "# Good things have arrived" > ${{ github.workflow }}-CHANGELOG.txt
-    - name: Release
+    - name: Github Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
-      with:
-        body_path: ${{ github.workflow }}-CHANGELOG.txt
+      if: success()
       env:
         GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+
