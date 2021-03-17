@@ -13,3 +13,10 @@ jobs:
     - name: test job
       run: echo "test release"
 
+    - name: Github Release
+      uses: softprops/action-gh-release@v1
+      if: success()
+      with:
+        files: rstest_test.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
