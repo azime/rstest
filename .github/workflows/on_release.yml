@@ -2,20 +2,16 @@ name: Publish release
 
 on:
   push:
-    tags:
-      - '*'
-
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - name: test job
       run: echo "test release"
 
-    - name: Github Release
-      uses: softprops/action-gh-release@v1
-      if: success()
-      env:
-        GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+    - name: install httpie dependency
+      run: |
+        apt-get update
+        sudo apt install -y httpie
 
