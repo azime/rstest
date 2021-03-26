@@ -15,3 +15,5 @@ jobs:
         sudo apt-get update
         sudo apt install -y httpie
 
+    - name: Install requirements
+      run: apt-get install -y curl wget build-essential
