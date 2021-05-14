@@ -18,4 +18,7 @@ jobs:
       if: success()
       env:
         GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
-
+    - name: display version
+      run: |
+        version=$(make version)
+        echo "version : "$version
