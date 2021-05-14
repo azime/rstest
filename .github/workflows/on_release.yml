@@ -13,6 +13,11 @@ jobs:
     - name: test job
       run: echo "test release"
 
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
     - name: Github Release
       uses: softprops/action-gh-release@v1
       if: success()
