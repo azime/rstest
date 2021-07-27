@@ -1,10 +1,10 @@
 name: Publish release
 
 on:
+  pull_request:
   push:
-    tags:
-      - '*'
-
+    branches:
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,12 +13,19 @@ jobs:
     - name: test job
       run: echo "test release"
 
-    - name: Github Release
-      uses: softprops/action-gh-release@v1
-      if: success()
-      env:
-        GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
-    - name: display version
-      run: |
-          version=$(make version)
-          echo 'version : ' $version
+    - name: create packages_0.zip
+      run: zip packages_0.zip files*
+    - name: create packages_1.zip
+      run: zip packages_1.zip files*
+
+    - name: upload packages_0 packages
+      uses: actions/upload-artifact@v1
+      with:
+        name: packages_0
+        path: "packages_0.zip"
+
+    - name: upload packages_1 packages
+      uses: actions/upload-artifact@v1
+      with:
+        name: packages_1
+        path: "packages_1.zip"
