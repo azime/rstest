@@ -14,9 +14,9 @@ jobs:
       run: echo "test release"
 
     - name: create packages_0.zip
-      run: zip packages_0.zip test*
+      run: zip packages_0.zip files*
     - name: create packages_1.zip
-      run: zip packages_1.zip test*
+      run: zip packages_1.zip files*
 
     - name: upload packages_0 packages
       uses: actions/upload-artifact@v1
