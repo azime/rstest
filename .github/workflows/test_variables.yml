@@ -19,6 +19,7 @@ jobs:
           echo "version_output=$v" >> $GITHUB_OUTPUT
           echo "************************"
           echo "$v"
+          t=$(1/0)
           echo "************************"
 
   job2:
@@ -33,7 +34,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: [job1, job2]
     if: |
-      always() &&
-      !contains(needs.*.result, 'success')
+      always() && !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
     steps:
       - run: echo "${{ toJSON(needs) }}"
