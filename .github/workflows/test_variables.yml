@@ -17,6 +17,9 @@ jobs:
         run: |
           v=$(git describe --tags)
           echo "version_output=$v" >> $GITHUB_OUTPUT
+          echo "************************"
+          echo "$v"
+          echo "************************"
 
   job2:
     runs-on: ubuntu-latest
