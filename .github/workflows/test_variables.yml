@@ -28,3 +28,12 @@ jobs:
       - env:
           VV: ${{needs.job1.outputs.VERSION}}
         run: echo "$VV"
+
+  job3:
+    runs-on: ubuntu-latest
+    needs: [job1, job2]
+    if: |
+      always() &&
+      !contains(needs.*.result, 'success')
+    steps:
+      - run: echo "${{ toJSON(needs) }}"
