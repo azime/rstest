@@ -8,12 +8,12 @@ jobs:
     outputs:
       VERSION: ${{ steps.version.outputs.version_output }}
     steps:
-      - name: Checkout
+      - id: Checkout
         uses: actions/checkout@v3
         with:
           submodules : recursive
           fetch-depth: 0
-      - id: version_output
+      - id: version
         run: |
           v=$(git describe --tags)
           echo "version_output=$v" >> $GITHUB_OUTPUT
