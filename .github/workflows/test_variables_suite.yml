@@ -1,9 +1,9 @@
-name: Share variables between jobs
+name: AA
 
 on:
   workflow_run:
     workflows:
-      - VAR1
+      - Test
     types:
       - completed
 jobs:
