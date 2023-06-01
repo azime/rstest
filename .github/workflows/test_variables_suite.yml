@@ -1,9 +1,8 @@
 name: Share variables between jobs
 
 on:
-  pull_request:
   workflow_run:
-    workflows: ["test_variables"]
+    workflows: ["VAR1"]
     types:
       - completed
 jobs:
