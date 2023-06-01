@@ -26,5 +26,5 @@ jobs:
     needs: job1
     steps:
       - env:
-          VV: ${{needs.job1.outputs.VERSION}}
+          VV: ${{ needs.job1.outputs.VERSION }}
         run: echo "$VV"
