@@ -2,7 +2,8 @@ name: Share variables between jobs
 
 on:
   workflow_run:
-    workflows: ["VAR1"]
+    workflows:
+      - VAR1
     types:
       - completed
 jobs:
