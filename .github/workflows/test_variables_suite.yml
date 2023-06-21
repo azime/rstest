@@ -9,7 +9,8 @@ jobs:
     outputs:
       VERSION: ${{ steps.version.outputs.version_output }}
     steps:
-      - uses: docker-practice/actions-setup-docker@v1
+      - name: Setup docker
+        uses: docker-practice/actions-setup-docker@master
 
       - name: version
         run: |
