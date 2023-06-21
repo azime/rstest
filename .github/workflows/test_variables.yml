@@ -1,31 +1,31 @@
-name: Test
-
-on:
-  pull_request:
-jobs:
-  job1:
-    name: test1
-    runs-on: ubuntu-latest
-    outputs:
-      VERSION: ${{ steps.version.outputs.version_output }}
-    steps:
-      - id: Checkout
-        uses: actions/checkout@v3
-        with:
-          submodules : recursive
-          fetch-depth: 0
-      - id: version
-        run: |
-          v=$(git describe --tags)
-          echo "version_output=$v" >> $GITHUB_OUTPUT
-          echo "************************"
-          echo "$v"
-          echo "************************"
-
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - env:
-          VV: ${{ needs.job1.outputs.VERSION }}
-        run: echo "$VV"
+#name: Test
+#
+#on:
+#  pull_request:
+#jobs:
+#  job1:
+#    name: test1
+#    runs-on: ubuntu-latest
+#    outputs:
+#      VERSION: ${{ steps.version.outputs.version_output }}
+#    steps:
+#      - id: Checkout
+#        uses: actions/checkout@v3
+#        with:
+#          submodules : recursive
+#          fetch-depth: 0
+#      - id: version
+#        run: |
+#          v=$(git describe --tags)
+#          echo "version_output=$v" >> $GITHUB_OUTPUT
+#          echo "************************"
+#          echo "$v"
+#          echo "************************"
+#
+#  job2:
+#    runs-on: ubuntu-latest
+#    needs: job1
+#    steps:
+#      - env:
+#          VV: ${{ needs.job1.outputs.VERSION }}
+#        run: echo "$VV"
