@@ -9,7 +9,7 @@ jobs:
     outputs:
       VERSION: ${{ steps.version.outputs.version_output }}
     steps:
-      - id: Checkout
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules : recursive
@@ -18,6 +18,6 @@ jobs:
       - name: Setup docker
         uses: docker-practice/actions-setup-docker@v1
 
-      - id: version
+      - name: version
         run: |
           docker --version
