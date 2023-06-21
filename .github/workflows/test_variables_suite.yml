@@ -14,8 +14,10 @@ jobs:
         with:
           submodules : recursive
           fetch-depth: 0
-      - id: Setup docker
+
+      - name: Setup docker
         uses: docker-practice/actions-setup-docker@v1
+
       - id: version
         run: |
           docker --version
