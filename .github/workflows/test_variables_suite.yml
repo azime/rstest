@@ -1,0 +1,21 @@
+name: AA
+
+on:
+  pull_request:
+jobs:
+  job1:
+    name: test1
+    runs-on: ubuntu-latest
+    outputs:
+      VERSION: ${{ steps.version.outputs.version_output }}
+    steps:
+      - name: version
+        run: |
+          docker --version
+      - name: tag
+        run: |
+          echo ${GITHUB_REF_NAME}
+
+      - name: Clean the runner workspace
+        uses: colpal/actions-clean@v1
+        if: ${{ always() }}
