@@ -20,5 +20,5 @@ jobs:
           echo ${GITHUB_REF_NAME}
 
       - name: Clean the runner workspace
-        uses: AutoModality/action-clean@v1
+        uses: colpal/actions-clean@v1
         if: ${{ always() }}
