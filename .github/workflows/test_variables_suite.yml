@@ -15,3 +15,10 @@ jobs:
       - name: version
         run: |
           docker --version
+      - name: tag
+        run: |
+          echo ${GITHUB_REF_NAME}
+
+      - name: Clean the runner workspace
+        uses: AutoModality/action-clean@v1
+        if: ${{ always() }}
